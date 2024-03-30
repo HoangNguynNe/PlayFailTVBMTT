@@ -9,6 +9,7 @@ Dự án lập và giải mã PlayFail - Truyền Và Bảo Mật Thông Tin
 ```jsx
 pip install PyQt6
 ```
+Qt Documentation: https://doc.qt.io/qtforpython-6/
 
 - Bước 2: Vào hàm main để chạy
 ```jsx

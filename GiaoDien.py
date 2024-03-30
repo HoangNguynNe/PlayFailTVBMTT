@@ -147,11 +147,11 @@ class Ui_MainWindow(object):
                     if self.LuaChon_TT.currentIndex() == 0:
                         b = ThuatToan.LapMa(a,MaThuatToan)
                         self.KetQua_DaXuLy.setText('\n'.join([b[i:i+21] for i in range(0, len(b), 21)]))
-                        self.Key_DaXuLy.setText('\n'.join(' '.join(map(lambda x: str(x).ljust(5), row[:5])) for row in a))
+                        self.Key_DaXuLy.setText('\n'.join(' '.join(map(lambda x: "{:5}".format(str(x)), row[:5])) for row in a))
                     else:
                         c = ThuatToan.GiaiMa(a,MaThuatToan)
                         self.KetQua_DaXuLy.setText('\n'.join([c[i:i+21] for i in range(0, len(c), 21)]))
-                        self.Key_DaXuLy.setText('\n'.join(' '.join(map(lambda x: str(x).center(5), row[:5])) for row in a))
+                        self.Key_DaXuLy.setText('\n'.join(' '.join(map(lambda x: "{:5}".format(str(x)), row[:5])) for row in a))
                 except Exception as e:
                     msgBox = QMessageBox()
                     msgBox.setText(f"Có lỗi trong quá trình biên dịch: {e.args}")

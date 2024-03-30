@@ -57,6 +57,7 @@ class Ui_MainWindow(object):
         self.Ma_TT.setGeometry(QtCore.QRect(460, 40, 241, 22))
         font = QtGui.QFont()
         font.setFamily("UVN Van Chuong Nang")
+        font.setPointSize(15)
         self.Ma_TT.setFont(font)
         self.Ma_TT.setObjectName("Ma_TT")
         self.label_4 = QtWidgets.QLabel(parent=self.groupBox)
@@ -134,22 +135,27 @@ class Ui_MainWindow(object):
         KeyThuatToan = self.Key_TT.text()
         a = ThuatToan.TaoMaTran(KeyThuatToan)
         if self.Ma_TT.text().__len__() == 0:
-            msgBox = QMessageBox()
-            msgBox.setText("Vui lòng nhập Mã !")
-            msgBox.exec()
+                msgBox = QMessageBox()
+                msgBox.setText("Vui lòng nhập Mã !")
+                msgBox.exec()
         elif self.Key_TT.text().__len__() == 0:
-            msgBox = QMessageBox()
-            msgBox.setText("Vui lòng nhập key !")
-            msgBox.exec()
+                msgBox = QMessageBox()
+                msgBox.setText("Vui lòng nhập key !")
+                msgBox.exec()
         else:
-            if self.LuaChon_TT.currentIndex() == 0:
-                b = ThuatToan.LapMa(a,MaThuatToan)
-                self.KetQua_DaXuLy.setText(b)
-                self.Key_DaXuLy.setText('\n'.join(' '.join(map(str, row[:5])) for row in a))
-            else:
-                c = ThuatToan.GiaiMa(a,MaThuatToan)
-                self.KetQua_DaXuLy.setText(c)
-                self.Key_DaXuLy.setText('\n'.join(' '.join(map(str, row[:5])) for row in a))
+                try:
+                    if self.LuaChon_TT.currentIndex() == 0:
+                        b = ThuatToan.LapMa(a,MaThuatToan)
+                        self.KetQua_DaXuLy.setText('\n'.join([b[i:i+21] for i in range(0, len(b), 21)]))
+                        self.Key_DaXuLy.setText('\n'.join(' '.join(map(lambda x: str(x).ljust(5), row[:5])) for row in a))
+                    else:
+                        c = ThuatToan.GiaiMa(a,MaThuatToan)
+                        self.KetQua_DaXuLy.setText('\n'.join([c[i:i+21] for i in range(0, len(c), 21)]))
+                        self.Key_DaXuLy.setText('\n'.join(' '.join(map(lambda x: str(x).center(5), row[:5])) for row in a))
+                except Exception as e:
+                    msgBox = QMessageBox()
+                    msgBox.setText(f"Có lỗi trong quá trình biên dịch: {e.args}")
+                    msgBox.exec()
             
 
     def retranslateUi(self, MainWindow):
@@ -167,12 +173,3 @@ class Ui_MainWindow(object):
         self.groupBox_3.setTitle(_translate("MainWindow", "Kết quả"))
         self.label_5.setText(_translate("MainWindow", "Create by Hoang Nguyen"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec())

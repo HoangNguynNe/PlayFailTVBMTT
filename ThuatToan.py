@@ -49,11 +49,13 @@ def GiaiMa(matrix, cipher_text):
     for pair in pairs:
         pos1 = [(row, col) for row in range(5) for col in range(5) if matrix[row][col] == pair[0]][0]
         pos2 = [(row, col) for row in range(5) for col in range(5) if matrix[row][col] == pair[1]][0]
-        if pos1[0] == pos2[0]:  
-            plain_text += matrix[pos1[0]][(pos1[1]-1)%5] + matrix[pos2[0]][(pos2[1]-1)%5]
-        elif pos1[1] == pos2[1]: 
-            plain_text += matrix[(pos1[0]-1)%5][pos1[1]] + matrix[(pos2[0]-1)%5][pos2[1]]
-        else:  
+        print(f"Pair: {pair}, pos1: {pos1}, pos2: {pos2}")  # Add this line for debugging
+        if pos1[0] == pos2[0]:
+            plain_text += matrix[pos1[0]][(pos1[1]-1) % 5] + matrix[pos2[0]][(pos2[1]-1) % 5]
+        elif pos1[1] == pos2[1]:
+            plain_text += matrix[(pos1[0]-1) % 5][pos1[1]] + matrix[(pos2[0]-1) % 5][pos2[1]]
+        else:
             plain_text += matrix[pos1[0]][pos2[1]] + matrix[pos2[0]][pos1[1]]
     return plain_text
+
 

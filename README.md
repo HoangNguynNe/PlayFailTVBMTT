@@ -1,6 +1,7 @@
 Dự án lập và giải mã PlayFail - Truyền Và Bảo Mật Thông Tin
 ===
 [![Python](https://img.shields.io/pypi/pyversions/tensorflow.svg?style=plastic)](https://python.org)
+[![Pyqt6](https://img.shields.io/pypi/dd/PyQt6?style=flat&link=https%3A%2F%2Fpypi.org%2Fproject%2FPyQt6%2F)](https://doc.qt.io/qtforpython-6/)
 
 ## Cài đặt
 

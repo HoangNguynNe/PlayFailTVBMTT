@@ -1,4 +1,4 @@
-import GiaoDien, ThuatToan
+import GiaoDien
 from PyQt6 import QtWidgets
 
 import sys

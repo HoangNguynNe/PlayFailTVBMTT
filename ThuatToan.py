@@ -28,14 +28,10 @@ def TaoMaTran(key):
 
 def LapMa(matrix, plain_text):
     plain_text = plain_text.upper().replace(' ', '').replace('J', 'I')
-    new_plain_text = ''
-    i = 0
-    while i < len(plain_text):
-        new_plain_text += plain_text[i]
-        if (i + 1 < len(plain_text)) and (plain_text[i] == plain_text[i + 1]):
-            new_plain_text += 'X'
-        i += 1
-    plain_text = new_plain_text
+    for s in range(0,len(plain_text)+1,2):
+        if s<len(plain_text)-1:
+            if plain_text[s] == plain_text[s+1]:
+                plain_text = plain_text[:s + 1] + 'X' + plain_text[s+1:]
     if len(plain_text) % 2 != 0:
         plain_text += 'X'
     pairs = [plain_text[i:i+2] for i in range(0, len(plain_text), 2)]

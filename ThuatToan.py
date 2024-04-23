@@ -28,6 +28,14 @@ def TaoMaTran(key):
 
 def LapMa(matrix, plain_text):
     plain_text = plain_text.upper().replace(' ', '').replace('J', 'I')
+    new_plain_text = ''
+    i = 0
+    while i < len(plain_text):
+        new_plain_text += plain_text[i]
+        if (i + 1 < len(plain_text)) and (plain_text[i] == plain_text[i + 1]):
+            new_plain_text += 'X'
+        i += 1
+    plain_text = new_plain_text
     if len(plain_text) % 2 != 0:
         plain_text += 'X'
     pairs = [plain_text[i:i+2] for i in range(0, len(plain_text), 2)]
@@ -42,6 +50,7 @@ def LapMa(matrix, plain_text):
         else: 
             cipher_text += matrix[pos1[0]][pos2[1]] + matrix[pos2[0]][pos1[1]]
     return cipher_text
+
 
 def GiaiMa(matrix, cipher_text):
     pairs = [cipher_text[i:i+2] for i in range(0, len(cipher_text), 2)]
